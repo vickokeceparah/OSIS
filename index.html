@@ -678,12 +678,140 @@
             background: linear-gradient(180deg, var(--blue-glow), var(--purple-glow));
             border-radius: 10px;
         }
+
+                /* ============ NAVIGASI ============ */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            margin: -2rem -1.5rem 3rem -1.5rem; /* Menempel ke atas */
+            background: rgba(5, 6, 15, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .nav-brand {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, var(--blue), var(--purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-brand i {
+            -webkit-text-fill-color: var(--blue);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dim);
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--blue), var(--purple));
+            transition: width 0.3s;
+            box-shadow: 0 0 10px var(--blue-glow);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Menu Mobile (Hamburger) */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--blue);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 1rem; margin: -1rem -1rem 2rem -1rem; }
+            .nav-toggle { display: block; }
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(5, 6, 15, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem 0;
+                border-bottom: 1px solid var(--glass-border);
+                display: none;
+            }
+            .nav-links.active { display: flex; }
+            .nav-links a {
+                padding: 1rem 2rem;
+                width: 100%;
+                display: block;
+            }
+            .nav-links a::after { display: none; }
+        }
     </style>
 </head>
 <body>
+        <!-- ============ NAVIGASI ============ -->
+    <nav class="navbar">
+        <a href="#beranda" class="nav-brand">
+            <i class="fas fa-atom"></i> OSIS NEXUS
+        </a>
+        
+        <button class="nav-toggle" id="navToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#beranda" class="active">Beranda</a></li>
+            <li><a href="#tentang">Tentang Kami</a></li>
+            <li><a href="#galeri">Galeri</a></li>
+            <li><a href="#kontak">Kontak</a></li>
+        </ul>
+    </nav>
     <div class="container">
         <!-- HEADER -->
-        <header class="header">
+        <header class="header" id="beranda">
             <div class="logo-badge">
                 <i class="fas fa-atom"></i>
             </div>
@@ -764,32 +892,49 @@
             </div>
         </div>
 
+                <!-- TENTANG KAMI -->
+        <section id="tentang" style="margin-bottom: 4rem;">
+            <h2 class="section-title">
+                <i class="fas fa-info-circle"></i> Tentang Kami
+            </h2>
+            <div class="card" style="flex-direction: column; align-items: flex-start; gap: 1rem; padding: 2rem;">
+                <p style="color: var(--text-dim); line-height: 1.8; font-size: 0.95rem;">
+                    <strong style="color: var(--blue);">OSIS NEXUS</strong> adalah organisasi siswa intra sekolah yang berdedikasi untuk menciptakan lingkungan sekolah yang inovatif, kreatif, dan penuh aspirasi. Kami hadir sebagai jembatan antara siswa dan pihak sekolah, serta wadah bagi seluruh siswa untuk berkontribusi dan berkembang.
+                </p>
+                <p style="color: var(--text-dim); line-height: 1.8; font-size: 0.95rem;">
+                    Dengan semangat <em style="color: var(--purple);">"Future Generation"</em>, kami berkomitmen untuk mewujudkan program-program yang bermanfaat, membangun karakter kepemimpinan, dan menciptakan kenangan indah selama masa sekolah.
+                </p>
+            </div>
+        </section>
+
         <!-- ANGGOTA -->
-        <h2 class="section-title">
-            <i class="fas fa-users"></i> Member Division (17)
-        </h2>
-        <div class="anggota-grid">
-            <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">ANDI SAPUTRA</div><div class="class-sm">X RPL 1</div></div>
-            <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">BELLA SAFIRA</div><div class="class-sm">X RPL 2</div></div>
-            <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">CANDRA WIJAYA</div><div class="class-sm">X TG</div></div>
-            <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">DINDA AYU</div><div class="class-sm">XI RPL 1</div></div>
-            <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">EKO PRASETYO</div><div class="class-sm">XI RPL 2</div></div>
-            <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">FITRIANI</div><div class="class-sm">XI TG</div></div>
-            <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">GILANG R.</div><div class="class-sm">XII RPL 1</div></div>
-            <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">HANA SALSABILA</div><div class="class-sm">XII RPL 2</div></div>
-            <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">IRFAN HAKIM</div><div class="class-sm">X RPL 1</div></div>
-            <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">JIHAN AULIA</div><div class="class-sm">X RPL 2</div></div>
-            <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">KEVIN PRATAMA</div><div class="class-sm">X TG</div></div>
-            <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">LINA MARLINA</div><div class="class-sm">XI RPL 1</div></div>
-            <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">M. FAUZAN</div><div class="class-sm">XI RPL 2</div></div>
-            <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">NABILA ZAHRA</div><div class="class-sm">XI TG</div></div>
-            <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">OSCAR M.</div><div class="class-sm">XII RPL 1</div></div>
-            <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">PUTRI AMELIA</div><div class="class-sm">XII RPL 2</div></div>
-            <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">RAFI AHMAD</div><div class="class-sm">X RPL 1</div></div>
+        <div id="galeri">
+            <h2 class="section-title">
+                <i class="fas fa-users"></i> Member Division (17)
+            </h2>
+            <div class="anggota-grid">
+                <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">ANDI SAPUTRA</div><div class="class-sm">X RPL 1</div></div>
+                <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">BELLA SAFIRA</div><div class="class-sm">X RPL 2</div></div>
+                <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">CANDRA WIJAYA</div><div class="class-sm">X TG</div></div>
+                <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">DINDA AYU</div><div class="class-sm">XI RPL 1</div></div>
+                <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">EKO PRASETYO</div><div class="class-sm">XI RPL 2</div></div>
+                <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">FITRIANI</div><div class="class-sm">XI TG</div></div>
+                <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">GILANG R.</div><div class="class-sm">XII RPL 1</div></div>
+                <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">HANA SALSABILA</div><div class="class-sm">XII RPL 2</div></div>
+                <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">IRFAN HAKIM</div><div class="class-sm">X RPL 1</div></div>
+                <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">JIHAN AULIA</div><div class="class-sm">X RPL 2</div></div>
+                <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">KEVIN PRATAMA</div><div class="class-sm">X TG</div></div>
+                <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">LINA MARLINA</div><div class="class-sm">XI RPL 1</div></div>
+                <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">M. FAUZAN</div><div class="class-sm">XI RPL 2</div></div>
+                <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">NABILA ZAHRA</div><div class="class-sm">XI TG</div></div>
+                <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">OSCAR M.</div><div class="class-sm">XII RPL 1</div></div>
+                <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">PUTRI AMELIA</div><div class="class-sm">XII RPL 2</div></div>
+                <div class="anggota-card"><div class="avatar-sm"><i class="fas fa-user"></i></div><div class="name-sm">RAFI AHMAD</div><div class="class-sm">X RPL 1</div></div>
+            </div>
         </div>
 
         <!-- FORM ASPIRASI -->
-        <section class="aspirasi-section">
+        <section class="aspirasi-section" id="kontak">
             <div class="aspirasi-header">
                 <div class="aspirasi-icon">
                     <i class="fas fa-satellite-dish"></i>
@@ -849,6 +994,46 @@
     </div>
 
     <script>
+                // Toggle menu mobile
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = navToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Tutup menu saat link diklik (mobile)
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = navToggle.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+
+        // Highlight link aktif saat scroll
+        const sections = document.querySelectorAll('section[id], header[id]');
+        const navItems = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === '#' + current) {
+                    item.classList.add('active');
+                }
+            });
+        });
         const STORAGE_KEY = 'osis_nexus_aspirasi';
 
         function getAspirasi() {
